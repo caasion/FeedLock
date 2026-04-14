@@ -1,6 +1,6 @@
 # FeedLock
 
-![Demo](docs/demo.gif)
+![Demo](demo.gif)
 
 Take back control of how you use Instagram. Text your friends and stay connected without accidentally scrolling.
 
@@ -16,9 +16,9 @@ Enable FeedLock's accessibility service once during setup and you're done. No ac
 
 ## Screenshots
 
-| Onboarding | Blocked | DMs |
-|---|---|---|
-| ![Onboarding](docs/onboarding.png) | ![Blocked](docs/blocked.png) | ![DMs](docs/dms.png) |
+| Onboarding | Blocked | 
+|---|---|
+| ![Onboarding](onboarding.png) | ![Blocked](blocked.png) | 
 
 ## Installation
 
