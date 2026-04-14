@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FeedLock</string>
+    <string name="accessibility_service_description">FeedLock monitors foreground apps to block Instagram feed access.</string>
+</resources>
