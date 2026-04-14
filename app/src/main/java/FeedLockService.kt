@@ -85,11 +85,11 @@ class FeedLockService : AccessibilityService() {
 
         if (eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             lastAnalyzeTime = 0L
-//            if (!instagramJustLaunched) {
-//                instagramJustLaunched = true
-//                navigateToDMs()
-//                return
-//            }
+            if (!instagramJustLaunched) {
+                instagramJustLaunched = true
+                navigateToDMs()
+                return
+            }
         } else if (currentTime - lastAnalyzeTime < DEBOUNCE_DELAY_MS) {
             return
         }
