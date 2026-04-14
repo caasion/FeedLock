@@ -12,25 +12,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import android.widget.Button
-import android.accessibilityservice.GestureDescription
-import android.graphics.Path
 import androidx.core.net.toUri
-
-enum class InstagramState {
-    HOME_FEED,
-    REELS,
-    EXPLORE,
-    PROFILE,
-    DMS,
-    UNKNOWN
-}
-
-// Simplified data class to hold only what we need
-data class FeedState(
-    val state: InstagramState,
-    val navBarTop: Int
-)
 
 class FeedLockService : AccessibilityService() {
 
@@ -125,58 +107,6 @@ class FeedLockService : AccessibilityService() {
         }
         root.recycle()
     }
-
-//    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-//        val packageName = event?.packageName?.toString() ?: return
-//        if (packageName != "com.instagram.android") return
-//
-//        val eventType = event.eventType
-//        if (eventType != AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED &&
-//            eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) return
-//
-//        val root = rootInActiveWindow ?: return
-//        logAllNodes(root, 0)
-//        root.recycle()
-//    }
-//
-//    private fun logAllNodes(node: AccessibilityNodeInfo, depth: Int) {
-//        val bounds = Rect()
-//        node.getBoundsInScreen(bounds)
-//        val text = node.text?.toString() ?: ""
-//        val desc = node.contentDescription?.toString() ?: ""
-//        if (text.isNotEmpty() || desc.isNotEmpty()) {
-//            Log.d("FeedLock", "NODE | depth: $depth | text: $text | desc: $desc | bounds: $bounds | isVisibleToUser: ${node.isVisibleToUser}")
-//        }
-//        for (i in 0 until node.childCount) {
-//            val child = node.getChild(i) ?: continue
-//            logAllNodes(child, depth + 1)
-//            child.recycle()
-//        }
-//    }
-
-//    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-//        val packageName = event?.packageName?.toString() ?: return
-//        if (packageName != "com.instagram.android") return
-//
-//        val eventType = event.eventType
-//        if (eventType != AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED &&
-//            eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) return
-//
-//        val root = rootInActiveWindow ?: return
-//        val bounds = Rect()
-//
-//        val labels = listOf("Messages", "Messenger", "Direct", "Chats", "Inbox")
-//        for (label in labels) {
-//            val nodes = root.findAccessibilityNodeInfosByText(label)
-//            for (node in nodes) {
-//                node.getBoundsInScreen(bounds)
-//                Log.d("FeedLock", "FOUND | label: $label | bounds: $bounds | isVisibleToUser: ${node.isVisibleToUser}")
-//                node.recycle()
-//            }
-//        }
-//
-//        root.recycle()
-//    }
 
     private fun showMessageOverlay() {
         if (messageOverlayView == null) return
@@ -285,26 +215,6 @@ class FeedLockService : AccessibilityService() {
         root.recycle()
     }
 
-//    private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
-//        val bounds = Rect()
-//
-//        if (instagramUsername.isNotEmpty()) {
-//            val usernameNodes = root.findAccessibilityNodeInfosByText(instagramUsername)
-//            for (node in usernameNodes) {
-//                node.getBoundsInScreen(bounds)
-//                Log.d("Feedlock", "${instagramUsername} found | isVisibleToUser: ${node.isVisibleToUser}")
-//                if (bounds.top in 0..200 && node.isVisibleToUser) {
-//
-//                    node.recycle()
-//                    return true
-//                }
-//                node.recycle()
-//            }
-//        }
-//
-//        return false
-//    }
-
     private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
         val bounds = Rect()
 
@@ -334,79 +244,6 @@ class FeedLockService : AccessibilityService() {
 
         return false
     }
-
-//    private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
-//        val bounds = Rect()
-//
-//        val dmLabels = listOf("Messages", "Message...", "Direct", "Chats", "Inbox")
-//        for (label in dmLabels) {
-//            val nodes = root.findAccessibilityNodeInfosByText(label)
-//            for (node in nodes) {
-//                node.getBoundsInScreen(bounds)
-//                if (node.isVisibleToUser ) {
-//                    node.recycle()
-//                    return true
-//                }
-//                node.recycle()
-//            }
-//        }
-//
-//        return false
-//    }
-
-//    private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
-//        val bounds = Rect()
-//
-//        // Primary DMs detection - Messages heading at top of screen
-//        val messagesNodes = root.findAccessibilityNodeInfosByText("Messages")
-//        for (node in messagesNodes) {
-//            node.getBoundsInScreen(bounds)
-//            if (bounds.top in 0..200) {
-//                node.recycle()
-//                return true
-//            }
-//            node.recycle()
-//        }
-//
-//        return false
-//    }
-
-//    private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
-//        val bounds = Rect()
-//
-//        val dmLabels = listOf("Messages", "Messenger", "Direct", "Chats", "Inbox")
-//        for (label in dmLabels) {
-//            val nodes = root.findAccessibilityNodeInfosByText(label)
-//            for (node in nodes) {
-//                node.getBoundsInScreen(bounds)
-//                if (node.isVisibleToUser && bounds.top > 700) {
-//                    node.recycle()
-//                    return true
-//                }
-//                node.recycle()
-//            }
-//        }
-//
-//        return false
-//    }
-
-//    private fun isOnAllowedTab(root: AccessibilityNodeInfo): Boolean {
-//        val bounds = Rect()
-//
-//        val navLabels = listOf("Messenger", "Messages", "Direct", "Chats", "Inbox", "Profile", "Home", "Reels")
-//        for (label in navLabels) {
-//            val nodes = root.findAccessibilityNodeInfosByText(label)
-//            for (node in nodes) {
-//                node.getBoundsInScreen(bounds)
-//                if (bounds.top > 1000) {
-//                    Log.d("FeedLock", "NAV | label: $label | isVisibleToUser: ${node.isVisibleToUser} | bounds: $bounds")
-//                }
-//                node.recycle()
-//            }
-//        }
-//
-//        return false
-//    }
 
     private fun navigateToDMs() {
         showMessageOverlay()
