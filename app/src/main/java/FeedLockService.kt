@@ -47,12 +47,6 @@ class FeedLockService : AccessibilityService() {
 
         val inflater = LayoutInflater.from(this)
         messageOverlayView = inflater.inflate(R.layout.overlay_message, null)
-
-        // Load username from SharedPreferences
-        val prefs = getSharedPreferences("feedlock_prefs", MODE_PRIVATE)
-        instagramUsername = prefs.getString("instagram_username", "") ?: ""
-
-        Log.d("FeedLock", "Service connected. Username: $instagramUsername")
     }
 
     override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {

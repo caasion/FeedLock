@@ -28,16 +28,6 @@ class MainActivity : AppCompatActivity() {
         usernameInput = findViewById(R.id.usernameInput)
         saveButton = findViewById(R.id.saveButton)
 
-        // Load saved username into the field
-        val prefs = getSharedPreferences("feedlock_prefs", MODE_PRIVATE)
-        usernameInput.setText(prefs.getString("instagram_username", ""))
-
-        saveButton.setOnClickListener {
-            val username = usernameInput.text.toString().trim()
-            prefs.edit().putString("instagram_username", username).apply()
-            Toast.makeText(this, "Username saved", Toast.LENGTH_SHORT).show()
-        }
-
         enableButton.setOnClickListener {
             val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
             startActivity(intent)
