@@ -8,7 +8,7 @@ FeedLock is an Android accessibility service app that blocks the parts of Instag
 
 | Accessible ✔️ | Blocked ❌ | 
 |---|---|
-| DMs, User search, Profiles | Home feed, Reels, Explore | 
+| DMs, Profiles | Home feed, Reels, Explore | 
 
 ## How it works
 
@@ -37,6 +37,8 @@ FeedLock is not on the Google Play Store. You'll need to sideload it.
 ## A note on stories
 
 Stories are not currently accessible through FeedLock. This is a known limitation.
+
+My suggestion: Go on web view if you really do want to see people's stories.
 
 ## Privacy
 
